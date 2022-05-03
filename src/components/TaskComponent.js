@@ -10,22 +10,27 @@ class TaskComponent extends React.Component {
         }
     }
 
-
     componentDidMount(){
         TaskService.getTasks().then((response) => {
             this.setState({ tasks: response.data})
         });
     }
+
+    delete(id) {
+        TaskService.delete(id)
+    }
+
     render (){
         return (
             <div>
-                <h1 className="text-center"> Tasks </h1>
+                <h1 className="text-center"> Tâches à faire </h1>
                 <table className="table table-striped">
                     <thead>
                             <tr>
-                                <td> task Id</td>
-                                <td> Titre tache</td>
-                                <td> description</td>
+                                <td><b>Id</b></td>
+                                <td><b>Titre</b></td>
+                                <td><b>Description</b></td>
+                                <td>Options</td>
                             </tr>
 
                         </thead>
@@ -34,8 +39,10 @@ class TaskComponent extends React.Component {
                                 this.state.tasks.map(
                                     task => 
                                     <tr key = {task.id}>
+                                        <td> {task.id}</td>
                                         <td> {task.titleTask}</td>   
-                                        <td> {task.description}</td>       
+                                        <td> {task.description}</td>
+                                        <td><button onClick={this.delete(task.id)} >Supprimer</button></td>     
                                     </tr>
                                 )
                             }
