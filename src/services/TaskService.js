@@ -2,6 +2,7 @@ import axios from 'axios'
 
 const POSTS_REST_API_URL = "http://localhost:9000/tasks";
 const DELETE_URL = "http://localhost:9000/task/";
+const UPDATE_URL = "http://localhost:9000/task/";
 
 
 class TaskService {
@@ -13,7 +14,15 @@ class TaskService {
     }
 
     delete(id) {
-        axios.delete(DELETE_URL + id).catch(err => console.log(err));
+        axios.delete(DELETE_URL + id)
+        .then(response => window.location.reload())
+        .catch(err => console.log(err));
+    }
+
+    update(id) {
+        axios.update(UPDATE_URL + id)
+        .then(response => window.location.reload())
+        .catch(err => console.log(err));
     }
 
 }

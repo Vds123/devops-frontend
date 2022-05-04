@@ -1,8 +1,11 @@
 import React from 'react'
+import axios from 'axios'
 import TaskService from '../services/TaskService'
 
-class TaskComponent extends React.Component {
+const DELETE_URL = "http://localhost:9000/task/";
+const UPDATE_URL = "http://localhost:9000/task/";
 
+class TaskComponent extends React.Component {
     constructor(props){
         super(props)
         this.state = {
@@ -17,7 +20,11 @@ class TaskComponent extends React.Component {
     }
 
     delete(id) {
-        TaskService.delete(id)
+        axios.delete(DELETE_URL + id).catch(err => console.log(err));
+    }
+
+    update(id) {
+        axios.update(UPDATE_URL + id).catch(err => console.log(err));
     }
 
     render (){
@@ -42,7 +49,9 @@ class TaskComponent extends React.Component {
                                         <td> {task.id}</td>
                                         <td> {task.titleTask}</td>   
                                         <td> {task.description}</td>
-                                        <td><button onClick={this.delete(task.id)} >Supprimer</button></td>     
+                                        <td>
+                                            <button type="button" onClick={() => TaskService.delete(task.id)} >Supprimer</button>
+                                        </td>     
                                     </tr>
                                 )
                             }
