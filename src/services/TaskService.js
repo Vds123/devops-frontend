@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 const POSTS_REST_API_URL = "http://localhost:9000/tasks";
+const ADD_URL = "http://localhost:9000/task/";
 const DELETE_URL = "http://localhost:9000/task/";
 const UPDATE_URL = "http://localhost:9000/task/";
 
@@ -22,6 +23,12 @@ class TaskService {
     update(id) {
         axios.update(UPDATE_URL + id)
         .then(response => window.location.reload())
+        .catch(err => console.log(err));
+    }
+
+    add() {
+        axios.add(ADD_URL)
+        //.then(response => window.location.reload())
         .catch(err => console.log(err));
     }
 
