@@ -26,9 +26,11 @@ class TaskComponent extends React.Component {
     }
     
     handleSubmit(event) {
-        alert('Une tâche à été crée : ' + this.state.titleTask + ' ' + this.state.description );
-        TaskService.add();
-        event.preventDefault();
+        const task = {
+            titleTask: this.state.titleTask,
+            description: this.state.description
+        }
+        TaskService.add(task);
     }
 
     componentDidMount(){

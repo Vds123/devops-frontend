@@ -26,10 +26,10 @@ class TaskService {
         .catch(err => console.log(err));
     }
 
-    add() {
-        axios.add(ADD_URL)
-        //.then(response => window.location.reload())
-        .catch(err => console.log(err));
+    add(task) {
+        axios.post(ADD_URL, task)
+        .then(response => window.location.reload())
+        .catch(err => alert(err));
     }
 
 }
